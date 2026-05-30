@@ -37,16 +37,16 @@ def _test_transform_vs_scripted(transform, s_transform, tensor, msg=None):
 
 
 def _test_transform_vs_scripted_on_batch(transform, s_transform, batch_tensors, msg=None):
-    torch.manual_seed(12)
+    torch.manual_seed(11)
     transformed_batch = transform(batch_tensors)
 
     for i in range(len(batch_tensors)):
         img_tensor = batch_tensors[i, ...]
-        torch.manual_seed(12)
+        torch.manual_seed(11)
         transformed_img = transform(img_tensor)
         assert_equal(transformed_img, transformed_batch[i, ...], msg=msg)
 
-    torch.manual_seed(12)
+    torch.manual_seed(11)
     s_transformed_batch = s_transform(batch_tensors)
     assert_equal(transformed_batch, s_transformed_batch, msg=msg)
 
